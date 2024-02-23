@@ -15,17 +15,21 @@ const Todo = () => {
   const [itemEmail2, setItemEmail2] = useState('');
   const [itemDescription2, setItemDescription2] = useState('');
 
-
+//MODAL SHOW
   const [show2, setShow2] = useState(false);
   const [allTodo2, setAllTodo2] = useState([]);
 
-  
+//NAME OF THE MODE INSIDE THE MODAL (ADD/UPDATE)  
   const [butMode2, setButMode2] = useState('');
+
+//NAME OF THE BUTTON INSIDE THE MODAL (ADD/UPDATE)
   const [butName2, setButname2] = useState('');
+
+//DATA'S ID
   const [itemId2, setSetItemId2] = useState('');
   
   
-  
+//CREATE MODAL FORM 
   const handleShow2 = () => { 
   setButMode2('create')
   setButname2('Save')  
@@ -36,8 +40,10 @@ const Todo = () => {
   setItemDescription2('');
   }
 
-
+//CLOSING THE MODAL
   const handleClose2 = () => setShow2(false);
+
+  //------------------------------------------------------------------------
   //------------------------------------------------------------------------
   //FORM REQUIREMENT
   const handleSave2 = async () => {
@@ -58,8 +64,10 @@ const Todo = () => {
         alert('Message is empty, please tell us your concern.')
         return;
       }
+    
     //------------------------------------------------------------------------
-
+    //------------------------------------------------------------------------
+    //CREATE/POST METHOD, SENDING THE VALUES TO THE BACKEND
   const objReq2 = {
     method: 'POST',
     headers: {
@@ -80,7 +88,10 @@ const Todo = () => {
         setShow2(false);
 
     } else {
-      //update process
+    
+    //------------------------------------------------------------------------
+    //------------------------------------------------------------------------
+    //UPDATE PROCESS
       const objReq2 = {
         method: 'PUT',
         headers: {
@@ -100,8 +111,6 @@ const Todo = () => {
       handleReadData2();
       setShow2(false);
       
-
-
     } 
 
   }
@@ -117,7 +126,9 @@ const Todo = () => {
     handleReadData2();
   }, []) // on load page
 
-  //delete of todo
+  //------------------------------------------------------------------------
+  //------------------------------------------------------------------------
+  //DELETE PROCESS
   const deleteItem2 = async (id)=> {
 
     let text = "Are you sure to delete todo id number:" + id + "?";
@@ -131,6 +142,7 @@ const Todo = () => {
    
   }
 
+  //UPDATE MODAL FORM
   const updateItem2 = async (id)=> {
     setButMode2('update')
     setButname2('Update')
@@ -202,7 +214,7 @@ const Todo = () => {
         <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Full Name</Form.Label>
-          <Form.Control required type="test" value={itemName2} onChange={ (e)=>{ setItemName2(e.target.value) }} placeholder="Enter Full Name" />
+          <Form.Control required type="text" value={itemName2} onChange={ (e)=>{ setItemName2(e.target.value) }} placeholder="Enter Full Name" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
@@ -212,7 +224,7 @@ const Todo = () => {
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
           <Form.Label>Email</Form.Label>
-          <Form.Control required type="test" value={itemEmail2} onChange={ (e)=>{ setItemEmail2(e.target.value) }} placeholder="Enter Email Address" />
+          <Form.Control required type="text" value={itemEmail2} onChange={ (e)=>{ setItemEmail2(e.target.value) }} placeholder="Enter Email Address" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

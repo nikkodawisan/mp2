@@ -82,12 +82,12 @@ const SignIn = ()=> {
 
                         <div className='col-md-6' onSubmit={handleLoginSubmit}>
                             <div className='form-group' controlId='controlInput1'>
-                                <label for="">Email</label>
+                                <label htmlFor="">Email</label>
                                 <input type="text" className="form-control" placeholder="Enter Full Name" onChange={ (e)=>setUsername(e.target.value) } />
                             </div>
 
                             <div className='form-group' controlId='controlInput2'>
-                                <label for="">Password</label>
+                                <label htmlFor="">Password</label>
                                 <input type="password" className="form-control" placeholder="Enter Phone Number" onChange={ (e)=>setPassword(e.target.value) } />
                             </div>
 
@@ -96,8 +96,7 @@ const SignIn = ()=> {
                             </div>
 
                             <div className='form-group py-3'>
-                                <p>Don't have an account?</p>
-                                <button type="button" className='btn btn-primary shadow w-100'>Create New Account</button>
+                                <p>Don't have an account? <a href='/signup'>Create Account</a></p>
                             </div>
                         </div>
 

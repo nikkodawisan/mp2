@@ -9,6 +9,7 @@ import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
 import Service from './components/pages/Service';
 import Book from './components/pages/BookNow';
+import Book2 from './components/pages/BookNow2';
 
 //PUBLIC
 import RootLayout from './components/inc/RootLayout';
@@ -16,6 +17,7 @@ import RootLayout from './components/inc/RootLayout';
 //ADMIN
 import Admin from './components/admin/Admin';
 import AdminLayout from './components/admin/AdminLayout';
+import BookSent from './components/admin/adminPages/BookSent';
 
 
 
@@ -36,11 +38,13 @@ function App() {
       <Route path="/signUp" element={<SignUp/>}></Route>
       <Route path="/service" element={<Service/>}></Route>
       <Route path="/book" element={<Book/>}></Route>
+      <Route path="/book2" element={<Book2/>}></Route>
       </Route> 
 
       {/*ADMIN*/}
       <Route element={<AdminLayout/>}>
         <Route path="/admin" element={<Admin/>}></Route>
+        <Route path="/book-sent" element={<BookSent/>}></Route>
       </Route>
 
     </Routes>

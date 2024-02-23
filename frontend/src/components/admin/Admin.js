@@ -1,18 +1,15 @@
-import React from 'react';
+import Form from 'react-bootstrap/Form';
+import { useState, useEffect } from 'react';
+import apiRequest from '../../dataFetch/apiRequest';
 
-function Admin() {
-    return (
-      <section className='section footer bg-secondary text-white border-top'>
-        <div className='container'>
-            <div className='row'>
-                <div className='text-center'>
-                    <p>ADMIN</p>
-                </div>
-            </div>
-        </div>
+//BOOTSTRAP//
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-      </section>  
-    );
+const Todo = () => {
+  return(
+<h1>WELCOME TO ADMIN PAGE</h1>
+  )
 }
-
-export default Admin;
+export default Todo

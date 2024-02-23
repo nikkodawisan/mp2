@@ -5,7 +5,7 @@ function AdminNavbar() {
     return (
 <nav className="navbar py-4 shadow navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid mx-4">
-    <Link to="/home" className="navbar-brand fw-bold">ADMIN PAGE</Link>
+    <Link to="/admin" className="navbar-brand fw-bold">WELCOME ADMIN</Link>
 
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -15,16 +15,10 @@ function AdminNavbar() {
 
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-        <Link to="/home" className="nav-link active">Home</Link>
+        <Link to="/admin" className="nav-link active">Home</Link>
         </li>
         <li className="nav-item">
-        <Link to="/service" className="nav-link active">Services</Link>
-        </li>
-        <li className="nav-item">
-        <Link to="/contact" className="nav-link active">Contact</Link>
-        </li>
-        <li className="nav-item">
-        <Link to="/book" className="nav-link active">Book Now</Link>
+        <Link to="/book-sent" className="nav-link active">Appointment Records</Link>
         </li>
       </ul>
       

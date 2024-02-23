@@ -25,32 +25,32 @@ function SignUp() {
                         {/*Left Side*/}
                         <div className='col-md-6'>
                             <div className='form-group'>
-                                <label for="">First Name</label>
+                                <label htmlFor="">First Name</label>
                                 <input type="text" className="form-control" placeholder="Enter First Name" />
                             </div>
 
                             <div className='form-group'>
-                                <label for="">Last Name</label>
+                                <label htmlFor="">Last Name</label>
                                 <input type="text" className="form-control" placeholder="Enter Last Name" />
                             </div>
 
                             <div className='form-group'>
-                                <label for="">Phone Number</label>
+                                <label htmlFor="">Phone Number</label>
                                 <input type="text" className="form-control" placeholder="Enter Phone Number" />
                             </div>
 
                             <div className='form-group'>
-                                <label for="">Email</label>
+                                <label htmlFor="">Email</label>
                                 <input type="email" className="form-control" placeholder="Enter Email Address" />
                             </div>
 
                             <div className='form-group'>
-                                <label for="">Password</label>
+                                <label htmlFor="">Password</label>
                                 <input type="password" className="form-control" placeholder="Password" />
                             </div>
 
                             <div className='form-group'>
-                                <label for="">Confirm Password</label>
+                                <label htmlFor="">Confirm Password</label>
                                 <input type="password" className="form-control" placeholder="Re-type your Password" />
                             </div>
 

@@ -321,111 +321,95 @@ app.delete('/delete/record/:id', (req, res)=>{
 
 //============================BOOK DATABASE===================================
 
-const todoDatabase = [
+const bookDatabase = [
     {
         id:1,
-        itemName: "Candy Lane",
-        itemContact:'1234435677888',
+        itemFirstName: "Penny",
+        itemLastName: "Lane",
         itemEmail:'sample@gmail.com',
+        itemContact:'12345678909',
+        itemService:'',
         itemDate:'',
         itemTime:'',
-        itemService:'',
         itemDescription: "Sample description",
         },
     {
         id:2,
-        itemName: "Shampoo Supernova",
-        itemContact:'45353787465',
+        itemName: "Shampoo",
+        itemLastName: "Supernova",
         itemEmail:'this@gmail.com',
+        itemContact:'99999999999',
+        itemService:'',
         itemDate:'',
         itemTime:'',
-        itemService:'',
         itemDescription: "Sample description",
-        },
-
-    {
-         id:3,
-         itemName: "Mickey Mouse",
-         itemContact:'43546666454',
-         itemEmail:'that@gmail.com',
-         itemDate:'',
-         itemTime:'',
-         itemService:'',
-         itemDescription: "Sample description",
-        },
-
-    {
-         id:4,
-         itemName: "Keyboard Warrior",
-         itemContact:'45564466',
-         itemEmail:'samples222@gmail.com',
-         itemDate:'',
-         itemTime:'',
-         itemService:'',
-         itemDescription: "Sample description",
-        },
+        }
 
  ];
 
 //============================SAVE BOOK===================================
-app.post('/save-todo', (req, res) => {
+app.post('/save-book', (req, res) => {
 
-    let itemName = req.body.ItemName;
-    let itemContact = req.body.ItemContact;
+    let itemFirstName = req.body.ItemFirstName;
+    let itemLastName = req.body.ItemLastName;
     let itemEmail = req.body.ItemEmail;
+    let itemContact = req.body.ItemContact;
+    let itemService = req.body.ItemService;
     let itemDate = req.body.ItemDate;
     let itemTime = req.body.ItemTime;
-    let itemService = req.body.ItemService;
     let itemDescription = req.body.ItemDescription;
 
-    const newTodo = {
-        id: todoDatabase.length + 1,
-        itemName: itemName,
-        itemContact: itemContact,
+    const newBook = {
+        id: bookDatabase.length + 1,
+        itemFirstName: itemFirstName,
+        itemLastName: itemLastName,
         itemEmail: itemEmail,
+        itemContact: itemContact,
+        itemService: itemService,
         itemDate: itemDate,
         itemTime: itemTime,
-        itemService: itemService,
         itemDescription: itemDescription 
     }
 
-   if ( todoDatabase.push(newTodo) ) {
-        res.status(200).json( {code:'success', msg:'done saving'} )
+   if ( bookDatabase.push(newBook) ) {
+        res.status(200).json( {code:'success', msg:'Success Saving'} )
    } else {
-        res.status(400).json( {code:'failed', msg:'error encountered while saving'} )
+        res.status(400).json( {code:'failed', msg:'Error Encountered While Saving'} )
    }
 
 })
 
 //============================UPDATE BOOK===================================
 
-app.put('/update-todo/:todoId', (req, res)=>{
-    const todo_id = req.params.todoId;
+app.put('/update-book/:bookId', (req, res)=>{
+    const book_id = req.params.bookId;
 
-    let itemName = req.body.ItemName;
-    let itemContact = req.body.ItemContact;
+    let itemFirstName = req.body.ItemFirstName;
+    let itemLastName = req.body.ItemLastName;
     let itemEmail = req.body.ItemEmail;
+    let itemContact = req.body.ItemContact;
+    let itemService = req.body.ItemService;
     let itemDate = req.body.ItemDate;
     let itemTime = req.body.ItemTime;
-    let itemService = req.body.ItemService;
     let itemDescription = req.body.ItemDescription;
 
-    const updateTodoRecord = {
-        id: todo_id,
-        itemName: itemName,
-        itemContact: itemContact,
+    const updateBookRecord = {
+        id: book_id,
+        itemFirstName: itemFirstName,
+        itemLastName: itemLastName,
         itemEmail: itemEmail,
+        itemContact: itemContact,
+        itemService: itemService,
         itemDate: itemDate,
         itemTime: itemTime,
-        itemService: itemService,
         itemDescription: itemDescription 
     }
 
-   const indexOfTodo =  todoDatabase.findIndex( (obj) => obj.id == todo_id );
+   const indexOfBook =  bookDatabase.findIndex( (obj) => obj.id == book_id );
 
-   todoDatabase[indexOfTodo] = updateTodoRecord;
+   bookDatabase[indexOfBook] = updateBookRecord;
 
-   if (todoDatabase) {
+   if (bookDatabase) {
         res.json(
             {
                 code : "success",
@@ -435,8 +419,8 @@ app.put('/update-todo/:todoId', (req, res)=>{
    } else {
       res.status(400).json(
         {
-            code : "failed",
-            msg : "Error encountered while updating"
+            code : "Failed",
+            msg : "Error Encountered While Updating"
         }
       )
    }
@@ -444,16 +428,16 @@ app.put('/update-todo/:todoId', (req, res)=>{
 })
        
 
-app.get('/get-todo-data', (req, res) => {
-    res.json(todoDatabase);  
+app.get('/get-book-data', (req, res) => {
+    res.json(bookDatabase);  
 })
 
 
-app.get('/get-todo/:id', (req, res) => {
-    const todoId = parseInt(req.params.id);
-    console.log(todoId)
-    console.log(todoDatabase);
-    const itemFound = todoDatabase.find( (item) => {  return todoId === item.id } ) 
+app.get('/get-book/:id', (req, res) => {
+    const bookId = parseInt(req.params.id);
+    console.log(bookId)
+    console.log(bookDatabase);
+    const itemFound = bookDatabase.find( (item) => {  return bookId === item.id } ) 
 
      if (itemFound){
          res.status(200).json(itemFound);
@@ -465,23 +449,23 @@ app.get('/get-todo/:id', (req, res) => {
 
 //============================DELETE BOOK===================================
 
-app.delete('/delete-todo/:todoId', (req, res)=>{
-    const todo_id = req.params.todoId;
-    const indexValue =  todoDatabase.findIndex( (obj) => obj.id == todo_id );
-    todoDatabase.splice(indexValue, 1); // 1, 1
+app.delete('/delete-book/:bookId', (req, res)=>{
+    const book_id = req.params.bookId;
+    const indexValue =  bookDatabase.findIndex( (obj) => obj.id == book_id );
+    bookDatabase.splice(indexValue, 1); // 1, 1
 
-    if (todoDatabase) {
+    if (bookDatabase) {
         res.json(
             {
-                code : "success",
+                code : "Success",
                 msg : "Delete Contact Done"
             }
         )
    } else {
       res.status(400).json(
         {
-            code : "failed",
-            msg : "Error encountered while deleting contact"
+            code : "Failed",
+            msg : "Error Encountered While Deleting Contact"
         }
       )
    }
@@ -613,7 +597,7 @@ app.get('/get-contact/:id', (req, res) => {
 
 })
 
-//============================DELETE BOOK======================================================
+//============================DELETE CONTACT======================================================
 
 app.delete('/delete-contact/:contactId', (req, res)=>{
     const contact_id = req.params.contactId;
@@ -637,5 +621,58 @@ app.delete('/delete-contact/:contactId', (req, res)=>{
    }
     
 })
+
+//==============================================================================================
+//==============================================================================================
+//==============================================================================================
+//==============================================================================================
+//=================================BOOK 2=======================================================
+
+const book2Database = [
+    {
+        id:1,
+        itemName3: "John Deym",
+        itemContact3:'1234435677888',
+        itemEmail3:'sample@gmail.com',
+        itemDescription3: "Sample description",
+        },
+    {
+        id:2,
+        itemName3: "Shampoo Supernova",
+        itemContact3:'45353787465',
+        itemEmail3:'this@gmail.com', 
+        itemDescription3: "Sample description",
+        },
+ ];
+
+
+ //============================SAVE BOOK2=====================================================
+app.post('/save-book2', (req, res) => {
+
+    let itemName3 = req.body.ItemName3;
+    let itemContact3 = req.body.ItemContact3;
+    let itemEmail3 = req.body.ItemEmail3;
+    let itemDescription3 = req.body.ItemDescription3;
+
+    const newBook2 = {
+        id: book2Database.length + 1,
+        itemName3: itemName3,
+        itemContact3: itemContact3,
+        itemEmail3: itemEmail3,
+        itemDescription3: itemDescription3 
+    }
+
+   if ( book2Database.push(newBook2) ) {
+        res.status(200).json( {code:'success', msg:'done saving'} )
+   } else {
+        res.status(400).json( {code:'failed', msg:'error encountered while saving'} )
+   }
+
+})
+
+app.get('/get-book2-data', (req, res) => {
+    res.json(book2Database);  
+})
+
 app.listen(5000)
 console.log('Server is running in port 5000')
