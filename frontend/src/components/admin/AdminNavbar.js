@@ -18,6 +18,9 @@ function AdminNavbar() {
         <Link to="/admin" className="nav-link active">Home</Link>
         </li>
         <li className="nav-item">
+        <Link to="/admin-join" className="nav-link active">Applicants</Link>
+        </li>
+        <li className="nav-item">
         <Link to="/book-sent" className="nav-link active">Appointment Records</Link>
         </li>
       </ul>

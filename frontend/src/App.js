@@ -5,11 +5,10 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 //PAGES
 import Home from './components/pages/Home';
 import Contact from './components/pages/Contact';
-import SignIn from './components/pages/SignIn';
-import SignUp from './components/pages/SignUp';
 import Service from './components/pages/Service';
 import Book from './components/pages/BookNow';
-import Book2 from './components/pages/BookNow2';
+import Lounge from './components/pages/Lounge';
+import Join from './components/pages/Join';
 
 //PUBLIC
 import RootLayout from './components/inc/RootLayout';
@@ -18,6 +17,9 @@ import RootLayout from './components/inc/RootLayout';
 import Admin from './components/admin/Admin';
 import AdminLayout from './components/admin/AdminLayout';
 import BookSent from './components/admin/adminPages/BookSent';
+import AdminJoin from './components/admin/adminPages/AdminJoin';
+import SignIn from './components/pages/SignIn';
+import SignUp from './components/pages/SignUp';
 
 
 
@@ -33,20 +35,21 @@ function App() {
       <Route element={<RootLayout/>}>
       <Route exact path="/" element={<Home/>}></Route>
       <Route path="/home" element={<Home/>}></Route>
-      <Route path="/contact" element={<Contact/>}></Route>
-      <Route path="/signIn" element={<SignIn/>}></Route>
-      <Route path="/signUp" element={<SignUp/>}></Route>
       <Route path="/service" element={<Service/>}></Route>
+      <Route path="/lounge" element={<Lounge/>}></Route>
+      <Route path="/join" element={<Join/>}></Route>
+      <Route path="/contact" element={<Contact/>}></Route>
       <Route path="/book" element={<Book/>}></Route>
-      <Route path="/book2" element={<Book2/>}></Route>
       </Route> 
 
       {/*ADMIN*/}
       <Route element={<AdminLayout/>}>
         <Route path="/admin" element={<Admin/>}></Route>
         <Route path="/book-sent" element={<BookSent/>}></Route>
+        <Route path="/admin-join" element={<AdminJoin/>}></Route>
+        <Route path="/signIn" element={<SignIn/>}></Route>
+      <Route path="/signUp" element={<SignUp/>}></Route>
       </Route>
-
     </Routes>
       </>
     </Router>

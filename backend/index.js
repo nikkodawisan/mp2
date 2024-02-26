@@ -674,5 +674,157 @@ app.get('/get-book2-data', (req, res) => {
     res.json(book2Database);  
 })
 
+
+
+
+
+
+
+
+
+
+//-----------------------------------JOIN DATABASE-------------------------------------------
+
+
+const joinDatabase = [
+    {
+        id:1,
+        joinFirstName: "Berto",
+        joinLastName: "Weeknd",
+        joinContact:'1234435677888',
+        joinEmail:'sample@gmail.com',
+        joinAddress:'Dasmarinas Cavite',
+        joinDescription: "Sample description",
+        },
+    {
+        id:2,
+        joinFirstName: 'River',
+        joinLastName: 'Maya',
+        joinContact:'45353787465',
+        joinEmail:'this@gmail.com',
+        joinAddress: 'Sample Address', 
+        joinDescription: 'Sample description 123455',
+        },
+ ];
+
+//============================SAVE JOIN===================================
+app.post('/save-join', (req, res) => {
+
+    let joinFirstName = req.body.JoinFirstName;
+    let joinLastName = req.body.JoinLastName;
+    let joinEmail = req.body.JoinEmail;
+    let joinContact = req.body.JoinContact;
+    let joinAddress = req.body.JoinAddress;
+    let joinDescription = req.body.JoinDescription;
+
+    const newJoin = {
+        id: joinDatabase.length + 1,
+        joinFirstName: joinFirstName,
+        joinLastName: joinLastName,
+        joinEmail: joinEmail,
+        joinContact: joinContact,
+        joinAddress: joinAddress,
+        joinDescription: joinDescription 
+    }
+
+   if ( joinDatabase.push(newJoin) ) {
+        res.status(200).json( {code:'success', msg:'Success Saving'} )
+   } else {
+        res.status(400).json( {code:'failed', msg:'Error Encountered While Saving'} )
+   }
+
+})
+
+//============================UPDATE JOIN===================================
+
+app.put('/update-join/:joinId', (req, res)=>{
+    const join_id = req.params.joinId;
+
+    let joinFirstName = req.body.JoinFirstName;
+    let joinLastName = req.body.JoinLastName;
+    let joinEmail = req.body.JoinEmail;
+    let joinContact = req.body.JoinContact;
+    let joinAddress = req.body.JoinService;
+    let joinDescription = req.body.JoinDescription;
+
+    const updateJoinRecord = {
+        id: join_id,
+        joinFirstName: joinFirstName,
+        joinLastName: joinLastName,
+        joinEmail: joinEmail,
+        joinContact: joinContact,
+        joinAddress: joinAddress,
+        joinDescription: joinDescription 
+    }
+
+   const indexOfJoin =  joinDatabase.findIndex( (obj) => obj.id == join_id );
+
+   joinDatabase[indexOfJoin] = updateJoinRecord;
+
+   if (joinDatabase) {
+        res.json(
+            {
+                code : "success",
+                msg : "Update Done"
+            }
+        )
+   } else {
+      res.status(400).json(
+        {
+            code : "Failed",
+            msg : "Error Encountered While Updating"
+        }
+      )
+   }
+
+})
+       
+
+app.get('/get-join-data', (req, res) => {
+    res.json(joinDatabase);  
+})
+
+
+app.get('/get-join/:id', (req, res) => {
+    const joinId = parseInt(req.params.id);
+    console.log(joinId)
+    console.log(joinDatabase);
+    const itemFound = joinDatabase.find( (item) => {  return joinId === item.id } ) 
+
+     if (joinFound){
+         res.status(200).json(joinFound);
+     } else {
+         res.status(400).json("Invalid Id")
+     }
+
+})
+
+
+//============================DELETE JOIN===================================
+
+app.delete('/delete-join/:joinId', (req, res)=>{
+    const join_id = req.params.joinId;
+    const indexJoinValue =  joinDatabase.findIndex( (obj) => obj.id == join_id );
+    joinDatabase.splice(indexJoinValue, 1); // 1, 1
+
+    if (joinDatabase) {
+        res.json(
+            {
+                code : "Success",
+                msg : "Delete Contact Done"
+            }
+        )
+   } else {
+      res.status(400).json(
+        {
+            code : "Failed",
+            msg : "Error Encountered While Deleting Contact"
+        }
+      )
+   }
+    
+})
+
+
 app.listen(5000)
 console.log('Server is running in port 5000')

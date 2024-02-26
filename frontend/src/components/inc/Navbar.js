@@ -17,23 +17,26 @@ function Navbar() {
         <li className="nav-item">
         <Link to="/home" className="nav-link active">Home</Link>
         </li>
+
         <li className="nav-item">
         <Link to="/service" className="nav-link active">Services</Link>
         </li>
+
         <li className="nav-item">
-        <Link to="/contact" className="nav-link active">Contact</Link>
-        </li>
-        <li className="nav-item">
-        <Link to="/book" className="nav-link active">Book Now</Link>
+        <Link to="/lounge" className="nav-link active">Lounge Menu</Link>
         </li>
 
         <li className="nav-item">
-        <Link to="/book2" className="nav-link active">Book2</Link>
+        <Link to="/join" className="nav-link active">Join Our Team</Link>
+        </li>
+
+        <li className="nav-item">
+        <Link to="/contact" className="nav-link active">Contact Us</Link>
         </li>
       </ul>
       
       <span className="navbar-text">
-        <Link to="/signIn" className="nav-link active">Sign In</Link>
+      <Link to="/book" className="nav-link active">Book Now</Link>
       </span>
 
     </div>

@@ -35,11 +35,6 @@ p
     position: relative;
 }
 
-.nav-link:hover
-{
-    /*border-bottom: 2px solid #ffaad7; */
-}
-
 .nav-link::after
 {
     content: '';
