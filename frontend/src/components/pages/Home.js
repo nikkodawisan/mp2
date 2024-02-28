@@ -3,7 +3,6 @@ import Slider from '../inc/Slider';
 import {Link} from 'react-router-dom';
 import Top3 from './inc/Top3'
 
-
 import T1 from '../images/sample4.jpg';
 import T2 from '../images/sample5.jpg';
 import T3 from '../images/sample6.jpg';

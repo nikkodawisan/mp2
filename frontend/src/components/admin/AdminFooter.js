@@ -6,7 +6,7 @@ function AdminFooter() {
         <div className='container'>
             <div className='row'>
                 <div className='text-center'>
-                    <p>This is ADMIN Footer</p>
+                    <a href="/home">Home</a>
                 </div>
             </div>
         </div>

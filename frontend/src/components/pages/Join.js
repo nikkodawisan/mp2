@@ -12,11 +12,30 @@ const [joinLastName, setJoinLastName] = useState('');
 const [joinEmail, setJoinEmail] = useState('');
 const [joinContact, setJoinContact] = useState('');
 const [joinAddress, setJoinAddress] = useState('');
+const [joinFileInput, setJoinFileInput] = useState('');
 const [joinDescription, setJoinDescription] = useState('');
 
 //SAVE
-
 const save = async () =>{
+
+  if (joinFirstName === ''){
+    alert('First Name Is Empty, This Is Required.');
+    return;
+  }
+  if (joinLastName === ''){
+    alert('Last Name Is Empty, This Is Required.');
+    return;
+  }
+  if (joinEmail === ''){
+    alert('Email Is Empty, This Is Required.')
+    return;
+  }
+  if (joinContact === ''){
+    alert('Mobile Number Is Empty, This Is Required.')
+    return;
+  }
+
+
 
 //CREATE/POST METHOD, SENDING THE VALUES TO THE BACKEND
   const objReq = {
@@ -24,7 +43,7 @@ const save = async () =>{
     headers: {
       'Content-Type':'application/x-www-form-urlencoded',
       },
-      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&JoinDescription="+joinDescription,
+      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&JoinFileInput="+joinFileInput+"&JoinDescription="+joinDescription,
       }
 
   const data = await apiRequest('http://localhost:5000/save-join', objReq);
@@ -33,7 +52,9 @@ const save = async () =>{
         if(data.code === "success"){
           console.log('Saved');
           alert('Successfully Sent');
-        } else {
+        } 
+        else 
+        {
           console.log('Failed To Send');
         }
         handleReadData();
@@ -158,12 +179,17 @@ return (
   <Form.Control required type="phone" value={joinContact} onChange={ (e)=>{ setJoinContact(e.target.value) }} placeholder="Enter Mobile Number (09...)" />
 </Form.Group>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput65">
   <Form.Label>Address</Form.Label>
   <Form.Control required type="text" value={joinAddress} onChange={ (e)=>{ setJoinAddress(e.target.value) }} placeholder="Enter Your Address" />
 </Form.Group>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea8">
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
+  <Form.Label>Choose File</Form.Label>
+  <Form.Control required type="file" value={joinFileInput} enctype="multipart/form-data" onChange={ (e)=>{ setJoinFileInput(e.target.value) }} placeholder="Upload Your Resume/CV" />
+</Form.Group>
+
+<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea7">
   <Form.Label>Additional Information</Form.Label>
   <Form.Control as="textarea" value={joinDescription} onChange={ (e)=>{ setJoinDescription(e.target.value) } } rows={3} />
 </Form.Group>

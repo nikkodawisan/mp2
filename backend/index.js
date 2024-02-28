@@ -354,7 +354,7 @@ app.post('/save-book', (req, res) => {
     let itemLastName = req.body.ItemLastName;
     let itemEmail = req.body.ItemEmail;
     let itemContact = req.body.ItemContact;
-    let itemService = req.body.ItemService;
+    let itemServices = req.body.ItemServices;
     let itemDate = req.body.ItemDate;
     let itemTime = req.body.ItemTime;
     let itemDescription = req.body.ItemDescription;
@@ -365,7 +365,7 @@ app.post('/save-book', (req, res) => {
         itemLastName: itemLastName,
         itemEmail: itemEmail,
         itemContact: itemContact,
-        itemService: itemService,
+        itemServices: itemServices,
         itemDate: itemDate,
         itemTime: itemTime,
         itemDescription: itemDescription 
@@ -694,6 +694,7 @@ const joinDatabase = [
         joinContact:'1234435677888',
         joinEmail:'sample@gmail.com',
         joinAddress:'Dasmarinas Cavite',
+        joinFileInput: '',
         joinDescription: "Sample description",
         },
     {
@@ -702,7 +703,8 @@ const joinDatabase = [
         joinLastName: 'Maya',
         joinContact:'45353787465',
         joinEmail:'this@gmail.com',
-        joinAddress: 'Sample Address', 
+        joinAddress: 'Sample Address',
+        joinFileInput: '', 
         joinDescription: 'Sample description 123455',
         },
  ];
@@ -715,6 +717,7 @@ app.post('/save-join', (req, res) => {
     let joinEmail = req.body.JoinEmail;
     let joinContact = req.body.JoinContact;
     let joinAddress = req.body.JoinAddress;
+    let joinFileInput = req.body.JoinFileInput;
     let joinDescription = req.body.JoinDescription;
 
     const newJoin = {
@@ -724,6 +727,7 @@ app.post('/save-join', (req, res) => {
         joinEmail: joinEmail,
         joinContact: joinContact,
         joinAddress: joinAddress,
+        joinFileInput: joinFileInput,
         joinDescription: joinDescription 
     }
 
@@ -745,6 +749,7 @@ app.put('/update-join/:joinId', (req, res)=>{
     let joinEmail = req.body.JoinEmail;
     let joinContact = req.body.JoinContact;
     let joinAddress = req.body.JoinService;
+    let joinFileInput = req.body.JoinFileInput;
     let joinDescription = req.body.JoinDescription;
 
     const updateJoinRecord = {
@@ -754,6 +759,7 @@ app.put('/update-join/:joinId', (req, res)=>{
         joinEmail: joinEmail,
         joinContact: joinContact,
         joinAddress: joinAddress,
+        joinFileInput: joinFileInput,
         joinDescription: joinDescription 
     }
 

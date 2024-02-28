@@ -13,6 +13,7 @@ const Join = () => {
   const [joinEmail, setJoinEmail] = useState('');
   const [joinContact, setJoinContact] = useState('');
   const [joinAddress, setJoinAddress] = useState('');
+  const [joinFileName, setJoinFileName] = useState('');
   const [joinDescription, setJoinDescription] = useState('');
 
 //MODAL SHOW
@@ -64,7 +65,7 @@ const Join = () => {
     headers: {
       'Content-Type':'application/x-www-form-urlencoded',
       },
-      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&ItemDate="+"&JoinDescription="+joinDescription,
+      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&JoinFileName="+joinFileName+"&JoinDescription="+joinDescription,
       }
 
   const data = await apiRequest('http://localhost:5000/save-join', objReq);
@@ -88,7 +89,7 @@ const Join = () => {
         headers: {
             'Content-Type':'application/x-www-form-urlencoded',
         },
-        body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&ItemDate="+"&JoinDescription="+joinDescription,
+        body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&JoinFileName="+joinFileName+"&JoinDescription="+joinDescription,
       }
 
       const data = await apiRequest('http://localhost:5000/update-join/'+joinId, objReq);
@@ -147,6 +148,7 @@ const Join = () => {
     setJoinEmail(data.joinEmail);
     setJoinContact(data.joinContact);
     setJoinAddress(data.joinAddress);
+    setJoinFileName(data.joinFileName);
     setJoinDescription(data.joinDescription);
     setShow(true);
   }
@@ -163,6 +165,7 @@ const Join = () => {
                   <th>Email</th>
                   <th>Mobile Number</th>
                   <th>Address</th>
+                  <th>Uploaded File</th>
                   <th>Additional Information</th>
                   <th> 
                    Action
@@ -182,6 +185,7 @@ const Join = () => {
                     <td>{item.joinEmail}</td>
                     <td>{item.joinContact}</td>
                     <td>{item.joinAddress}</td>
+                    <td>{item.joinFileName}</td>
                     <td>{item.joinDescription}</td>
                     
                     <td>  
