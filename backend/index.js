@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors")
+const jwt = require("jsonwebtoken");
 
 app.use(express.urlencoded({ extended:true })) //for form submission
 app.use(express.json()) //json response
@@ -11,173 +12,53 @@ app.use(
     )
 )
 
+//ADMIN USER
 const userDB = [
     {
         id: 1,
         username: "admin",
-        password: "password123",
+        password: "Password123",
         status: 1,
         email: "myTest@yahoo.com"
-    },
-    {
-        id: 2,
-        username: "staff",
-        password: "123",
-        status: 0,
-        email: "staff@google.com"
     }
 
 ]
-//CRUD  create, read, update, delete
-const profileDB = [
-    {
-        id:1,
-        firstname : "James",
-        lastname : "Bond",
-        phone : "97987",
-        address : "New York USA",
-        email : "james@yahoo.com",
-    },
-    {   
-        id:2,
-        firstname : "Peter",
-        lastname : "Pan",
-        phone : "97987",
-        address : "California USA",
-        email : "peter@yahoo.com",
-    },
-    {
-        id:3,
-        firstname : "Michael",
-        lastname : "Jordan",
-        phone : "97987",
-        address : "California USA",
-        email : "mic@google.com",
-    },
-    {
-        id:4,
-        firstname : "Vic",
-        lastname : "Saints",
-        phone : "9742342987",
-        address : "CDO Mindanao",
-        email : "vic@google.com",
-    },
-];
 
-let obj = profileDB[2];
-let pnumber = obj.phone;
 
-app.get('/all-profiles', (req, res)=>{
-    res.json(profileDB)
-})
+//JWT
 
-app.get('/one-profile/:id', (req, res)=>{
-   const profileId = req.params.id;
-   
-   const userFound = profileDB.find( 
-            (user)=>{
-                return parseInt(profileId) === parseInt(user.id)   
-            } 
-    )
-    //loop, fucntion itereate all of the items in the array
-    if (userFound){
-        res.json(userFound);
-    } else {
-        res.status(400).json("Invalid Id")
-    }
-})
-
-app.put('/update-user/:userId', (req, res)=>{
-    const user_id = req.params.userId;
-
-    let firstname = req.body.firstname;
-    let lastname = req.body.lastname;
-    let phone = req.body.phone;
-    let address = req.body.address;
-    let email = req.body.email;
-
-    const updateUserRecord = {
-        id: user_id,
-        firstname: firstname,
-        lastname: lastname,
-        phone: phone,
-        address: address,
-        email: email,
-    }
-
-   const updateThisRecord =  profileDB.findIndex( (obj) => obj.id == user_id );
-   profileDB[updateThisRecord] = updateUserRecord;
-
-   if (profileDB) {
-        res.json(
-            {
-                code : "success",
-                msg : "Update Done"
-            }
-        )
-   } else {
-      res.status(400).json(
+const generateAccessToken = (user) =>
+{
+    let token = jwt.sign(
         {
-            code : "failed",
-            msg : "Error encountered while updating"
+            id: user.id,
+            username: user.username,
+            email: user.email,
+        }, "ThisIsMySecretKey", {}
+    );
+    return token;
+}
+
+const middlewareVer = (req, res, next) =>
+{
+const authHeader = req.headers.authorization;
+console.log(authHeader);
+if(authHeader) {
+    const token = authHeader.split(" ")[1];
+
+    jwt.verify(token, "ThisMySecretKey", (err, user)=>{
+        if(err){
+           return req.status(403).json("Invalid Token");
         }
-      )
-   }
-
-})
- // let x = [67, 8, 9, 50, 45]        
-app.get('/delete-user/:userId', (req, res)=>{
-    const user_id = req.params.userId;
-    const indexValue =  profileDB.findIndex( (obj) => obj.id == user_id );
-    profileDB.splice(indexValue, 1);
-
-    if (profileDB) {
-        res.json(
-            {
-                code : "success",
-                msg : "Delete Done"
-            }
-        )
-   } else {
-      res.status(400).json(
-        {
-            code : "failed",
-            msg : "Error encountered while deleting"
-        }
-      )
-   }
-    
-})
- 
-app.post('/registration', (req, res)=>{
-    let firstname = req.body.firstname;
-    let lastname = req.body.lastname;
-    let phone = req.body.phone;
-    let address = req.body.address;
-    let email = req.body.email;
-
-    idCoount = profileDB.length + 1;
-    const newRecord = {
-        id: idCoount,
-        firstname: firstname,
-        lastname: lastname,
-        phone: phone,
-        address: address,
-        email: email,
+        req.user = user;
+        next();
+    })
+}
+    else
+    {
+        return res.status(403).json("You Are Not Authenticated");
     }
-    
-  const saveStatus = profileDB.push(newRecord);  
-   if (saveStatus) {
-     res.status(200).json(
-        { code: "success", msg:"registration successful" }   
-     )
-   } else {
-     res.status(401).json(
-        { code: "failed", msg:"registration error in saving" }   
-     )
-   }
-
-})
+}
 
 app.post('/login-validation/', (req, res)=>{
     let username_login = req.body.username;
@@ -190,8 +71,13 @@ app.post('/login-validation/', (req, res)=>{
     );
     
     if (user) {
-
-        const myReturn = { code: "success", msg : "Username and Password matched a record", loginUser : user }
+        const token = generateAccessToken(user)
+        const myReturn = { code: "success", 
+        msg : "Username and Password matched a record", 
+        loginUser : user,
+        loginId : user.id,
+        accessToken : token,
+    }
 
         res.status(200).json(myReturn);
 
@@ -335,7 +221,7 @@ const bookDatabase = [
         },
     {
         id:2,
-        itemName: "Shampoo",
+        itemFirstName: "Shampoo",
         itemLastName: "Supernova",
         itemEmail:'this@gmail.com',
         itemContact:'99999999999',
@@ -719,6 +605,7 @@ app.post('/save-join', (req, res) => {
     let joinAddress = req.body.JoinAddress;
     let joinFileInput = req.body.JoinFileInput;
     let joinDescription = req.body.JoinDescription;
+    let joinLimit = joinDatabase.length;
 
     const newJoin = {
         id: joinDatabase.length + 1,
@@ -731,6 +618,10 @@ app.post('/save-join', (req, res) => {
         joinDescription: joinDescription 
     }
 
+   if (joinLimit == 4) {
+        res.status(400).json( {code: 'failed', msg: 'Reservation Maximum Limit Reached'} )
+   }
+    
    if ( joinDatabase.push(newJoin) ) {
         res.status(200).json( {code:'success', msg:'Success Saving'} )
    } else {

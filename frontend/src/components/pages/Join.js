@@ -1,6 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, } from 'react';
+import { useForm } from 'react-hook-form';
 import apiRequest from '../../dataFetch/apiRequest';
 import T1 from '../images/icon1.png';
 
@@ -11,27 +12,42 @@ const [joinFirstName, setJoinFirstName] = useState('');
 const [joinLastName, setJoinLastName] = useState('');
 const [joinEmail, setJoinEmail] = useState('');
 const [joinContact, setJoinContact] = useState('');
-const [joinAddress, setJoinAddress] = useState('');
-const [joinFileInput, setJoinFileInput] = useState('');
+const [joinAddress, setJoinAddress] = useState();
+
 const [joinDescription, setJoinDescription] = useState('');
+
+const {register, handleSubmit} = useForm();
+const onSubmit = (data) => {
+  console.log(data);
+}
+
 
 //SAVE
 const save = async () =>{
+  var checkAtSymbol = joinEmail.indexOf("@");
+  var checkDotSymbol = joinEmail.lastIndexOf(".");
 
+  //Fist Name Validation
   if (joinFirstName === ''){
-    alert('First Name Is Empty, This Is Required.');
+    alert('First Name Is Required.');
     return;
   }
+  //Last Name Validation
   if (joinLastName === ''){
-    alert('Last Name Is Empty, This Is Required.');
+    alert('Last Name Is Required.');
     return;
   }
+  //Email Validation
   if (joinEmail === ''){
-    alert('Email Is Empty, This Is Required.')
+    alert('Email Is Required.')
     return;
   }
-  if (joinContact === ''){
-    alert('Mobile Number Is Empty, This Is Required.')
+  if (checkAtSymbol < 1 ){
+    alert('Email Must Have @ Symbol')
+    return;
+  }
+  if (checkDotSymbol < 1){
+    alert('Email must have . Symbol')
     return;
   }
 
@@ -43,7 +59,7 @@ const save = async () =>{
     headers: {
       'Content-Type':'application/x-www-form-urlencoded',
       },
-      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&JoinFileInput="+joinFileInput+"&JoinDescription="+joinDescription,
+      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&Register="+register+"&JoinDescription="+joinDescription,
       }
 
   const data = await apiRequest('http://localhost:5000/save-join', objReq);
@@ -79,7 +95,7 @@ return (
     <div className='container'>
         <div className='row'>
             <div className='col-md-4 my-auto'>
-                <h4>Join Us!</h4>
+                <h4>Join Us</h4>
             </div>
         </div>
     </div>
@@ -184,9 +200,9 @@ return (
   <Form.Control required type="text" value={joinAddress} onChange={ (e)=>{ setJoinAddress(e.target.value) }} placeholder="Enter Your Address" />
 </Form.Group>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
-  <Form.Label>Choose File</Form.Label>
-  <Form.Control required type="file" value={joinFileInput} enctype="multipart/form-data" onChange={ (e)=>{ setJoinFileInput(e.target.value) }} placeholder="Upload Your Resume/CV" />
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput6" onSubmit={handleSubmit(onSubmit)}>
+  <Form.Label>Resume/CV</Form.Label>
+  <Form.Control required type="file" value={register} placeholder="Upload Your Resume/CV" />
 </Form.Group>
 
 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea7">

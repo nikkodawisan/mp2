@@ -18,8 +18,8 @@ import Admin from './components/admin/Admin';
 import AdminLayout from './components/admin/AdminLayout';
 import BookSent from './components/admin/adminPages/BookSent';
 import AdminJoin from './components/admin/adminPages/AdminJoin';
-import SignIn from './components/pages/SignIn';
-import SignUp from './components/pages/SignUp';
+import SignIn from './components/admin/adminPages/SignIn';
+
 
 
 
@@ -48,7 +48,6 @@ function App() {
         <Route path="/book-sent" element={<BookSent/>}></Route>
         <Route path="/admin-join" element={<AdminJoin/>}></Route>
         <Route path="/signIn" element={<SignIn/>}></Route>
-      <Route path="/signUp" element={<SignUp/>}></Route>
       </Route>
     </Routes>
       </>

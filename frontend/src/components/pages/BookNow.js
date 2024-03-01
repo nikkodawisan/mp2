@@ -12,7 +12,7 @@ const [itemEmail, setItemEmail] = useState('');
 const [itemContact, setItemContact] = useState('');
 const [itemService, setItemService] = useState('');
 const [itemDate, setItemDate] = useState('');
-const [itemTime, setItemTime] = useState('');
+const [itemTime, setItemTime] = useState(0);
 const [itemDescription, setItemDescription] = useState('');
 
 //HAIR VALUE
@@ -188,7 +188,7 @@ if (earCandlingEntry === true)
 
         if(data.code === "success"){
           console.log('Ok save ');
-          alert('Successfully Sumitted!');
+          alert('Successfully Submitted!');
         } else {
           console.log('Not save');
         }
@@ -424,7 +424,7 @@ return (
 
   <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
     <Form.Label>Choose Service/s You Want To Book:</Form.Label>
-    <Form className='col-md-6'>
+    <Form.Group className='col-md-6'>
 
     <div>
 
@@ -617,7 +617,7 @@ return (
           </div>
           </div>
           
-</Form>
+</Form.Group>
 </Form.Group>
 </Form>
 </div>

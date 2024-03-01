@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from '../inc/Slider';
 import {Link} from 'react-router-dom';
-import Top3 from './inc/Top3'
+import Discount from './inc/Discount'
 
 import T1 from '../images/sample4.jpg';
 import T2 from '../images/sample5.jpg';
@@ -31,7 +31,7 @@ Feel free to visit us at 0009 A2 2nd floor Gov Ferrer Dr Buenavista II, General 
 
             {/*Our Top 3 Services*/}
 
-            <Top3 />
+            <Discount />
 
             {/*The Top 3 Service*/}
 

@@ -61,3 +61,13 @@ p
 {
     color: #f2f2f2;
 }
+
+.homeDiscount
+{
+background-color: aqua;
+color: black;
+font-weight: 700;
+padding-top: 4rem;
+padding-bottom: 4rem;
+border-radius: 2rem;
+}
