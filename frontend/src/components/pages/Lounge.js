@@ -38,11 +38,31 @@ function Lounge() {
                             <div id="hair1" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                             <div className="accordion-body">
                                 <ol>
-                                    <li>Haircut</li>
-                                    <li>Blowdry/Ironing/Hairstyling</li>
-                                    <li>Hair Spa</li>
-                                    <li>Hot Oil</li>
-                                    <li>Henna Celophane</li>
+                                    <li className='price-display'>
+                                        <span className="item-name">Haircut</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                    </li>
+                                    <li className='price-display'>
+                                        <span className='item-name'>Blowdry/Ironing/Hairstyling</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                    </li>
+                                    <li className='price-display'>
+                                        <span className='item-name'>Hair Spa</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                    </li>
+                                    <li className='price-display'>
+                                        <span className='item-name'>Hot Oil</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                    </li>
+                                    <li className='price-display'>
+                                        <span className='item-name'>Henna Celophane</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                    </li>
                                 </ol>
                             </div>
                             </div>
@@ -57,11 +77,36 @@ function Lounge() {
                             <div id="hair2" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                             <div className="accordion-body">
                             <ol>
-                                    <li>Classic Manicure</li>
-                                    <li>Classic Pedicure</li>
-                                    <li>Soft Gel Polish</li>
-                                    <li>Nail Art</li>
-                                    <li>Foot Spa</li>
+                                    <li className='price-display'>
+                                        <span className='item-name'>Classi Manicure</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                        <span className='item-name'>Classic Pedicure</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                        <span className='item-name'>Soft Gel Polish</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                        <span className='item-name'>Nail Art</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Foot Spa</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
                             </ol>
                             </div>
                             </div>
@@ -76,14 +121,54 @@ function Lounge() {
                             <div id="hair3" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                             <div className="accordion-body">
                             <ol>
-                                    <li>Natural/Classic Eye</li>
-                                    <li>Cats Eye</li>
-                                    <li>Dolly Eye</li>
-                                    <li>Wispy Eye</li>
-                                    <li>Anime Eye</li>
-                                    <li>Angel Eye</li>
-                                    <li>Eyelash Lift</li>
-                                    <li>Eyebrow Perm</li>
+                                    <li className='price-display'>
+                                    <span className='item-name'>Natural Classic Eye</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Cats Eye</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Dolly Eye</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Wispy Eye</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Anime Eye</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Angel Eye</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Eyelash Lift</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Eyebrow Perm</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
                             </ol>
                             </div>
                             </div>
@@ -98,12 +183,42 @@ function Lounge() {
                             <div id="hair4" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                             <div className="accordion-body">
                             <ol>
-                                    <li>Swedish Massage</li>
-                                    <li>Cats EyeAromatherapy</li>
-                                    <li>Body Scrub with Massage</li>
-                                    <li>Ventosa Therapy</li>
-                                    <li>Hot Stone</li>
-                                    <li>Ear Candling</li>
+                                    <li className='price-display'>
+                                    <span className='item-name'>Swedish Massage</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Aromatherapy</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Body Scrub with Massage</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Ventosa Therapy</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Hot Stone</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
+                                    <li className='price-display'>
+                                    <span className='item-name'>Ear Candling</span>
+                                        <span className="price-separator"></span>
+                                        <span className="item-price">P100.00</span>
+                                        </li>
+
                             </ol>
                             </div>
                             </div>

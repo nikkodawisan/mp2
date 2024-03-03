@@ -6,8 +6,10 @@ const jwt = require("jsonwebtoken");
 
 app.use(express.urlencoded({ extended:true })) //for form submission
 app.use(express.json()) //json response
-app.use(
-    cors(
+app.use
+(
+    cors
+    (
         { origin : "http://localhost:3000" }  //front end
     )
 )
@@ -19,7 +21,7 @@ const userDB = [
         username: "admin",
         password: "Password123",
         status: 1,
-        email: "myTest@yahoo.com"
+        email: "admin@gmail.com"
     }
 
 ]
@@ -39,7 +41,7 @@ const generateAccessToken = (user) =>
     return token;
 }
 
-const middlewareVer = (req, res, next) =>
+const middlewareVerification = (req, res, next) =>
 {
 const authHeader = req.headers.authorization;
 console.log(authHeader);
@@ -78,11 +80,11 @@ app.post('/login-validation/', (req, res)=>{
         loginId : user.id,
         accessToken : token,
     }
-
         res.status(200).json(myReturn);
-
-    } else {
-       res.status(401).json({ code: "failed", msg:"Incorrect Username and Password"}) 
+    } 
+    else 
+    {
+       res.status(401).json({ code: "failed", msg:"Incorrect Username And/Or Password"}) 
     }
 
 
@@ -100,7 +102,7 @@ const pageContent = [
     },
 ]
 
-app.get('/page-content', (req, res)=>{
+app.get('/page-content', middlewareVerification, (req, res)=>{
    
    let pageId = req.body.pageContent; 
    let actualContent = req.body.contentValue;
@@ -133,7 +135,7 @@ app.get('/page-content', (req, res)=>{
 })
 
 
-app.get('/page-content/:id', (req, res)=>{
+app.get('/page-content/:id',  middlewareVerification, (req, res)=>{
     const pageId = req.params.id;
 
     const pageFound = pageContent.find( 
@@ -151,7 +153,7 @@ app.get('/page-content/:id', (req, res)=>{
 
 //HTTP METHODS
 //GET, POST, PUT, HEAD, DELETE, PATCH
-app.get('/test/:num1/:num2', (req, res) => {
+app.get('/test/:num1/:num2',  middlewareVerification, (req, res) => {
     let num1 = req.params.num1;
     let num2 = req.params.num2;
     //database query
@@ -314,12 +316,12 @@ app.put('/update-book/:bookId', (req, res)=>{
 })
        
 
-app.get('/get-book-data', (req, res) => {
+app.get('/get-book-data',  middlewareVerification, (req, res) => {
     res.json(bookDatabase);  
 })
 
 
-app.get('/get-book/:id', (req, res) => {
+app.get('/get-book/:id',  middlewareVerification, (req, res) => {
     const bookId = parseInt(req.params.id);
     console.log(bookId)
     console.log(bookDatabase);
@@ -464,12 +466,12 @@ app.put('/update-contact/:contactId', (req, res)=>{
 })
        
 
-app.get('/get-contact-data', (req, res) => {
+app.get('/get-contact-data',  middlewareVerification, (req, res) => {
     res.json(contactDatabase);  
 })
 
 
-app.get('/get-contact/:id', (req, res) => {
+app.get('/get-contact/:id',  middlewareVerification, (req, res) => {
     const contactId = parseInt(req.params.id);
     console.log(contactId)
     console.log(contactDatabase);
@@ -508,69 +510,7 @@ app.delete('/delete-contact/:contactId', (req, res)=>{
     
 })
 
-//==============================================================================================
-//==============================================================================================
-//==============================================================================================
-//==============================================================================================
-//=================================BOOK 2=======================================================
-
-const book2Database = [
-    {
-        id:1,
-        itemName3: "John Deym",
-        itemContact3:'1234435677888',
-        itemEmail3:'sample@gmail.com',
-        itemDescription3: "Sample description",
-        },
-    {
-        id:2,
-        itemName3: "Shampoo Supernova",
-        itemContact3:'45353787465',
-        itemEmail3:'this@gmail.com', 
-        itemDescription3: "Sample description",
-        },
- ];
-
-
- //============================SAVE BOOK2=====================================================
-app.post('/save-book2', (req, res) => {
-
-    let itemName3 = req.body.ItemName3;
-    let itemContact3 = req.body.ItemContact3;
-    let itemEmail3 = req.body.ItemEmail3;
-    let itemDescription3 = req.body.ItemDescription3;
-
-    const newBook2 = {
-        id: book2Database.length + 1,
-        itemName3: itemName3,
-        itemContact3: itemContact3,
-        itemEmail3: itemEmail3,
-        itemDescription3: itemDescription3 
-    }
-
-   if ( book2Database.push(newBook2) ) {
-        res.status(200).json( {code:'success', msg:'done saving'} )
-   } else {
-        res.status(400).json( {code:'failed', msg:'error encountered while saving'} )
-   }
-
-})
-
-app.get('/get-book2-data', (req, res) => {
-    res.json(book2Database);  
-})
-
-
-
-
-
-
-
-
-
-
-//-----------------------------------JOIN DATABASE-------------------------------------------
-
+//===========================================JOIN DATABASE===================================================
 
 const joinDatabase = [
     {
@@ -677,12 +617,12 @@ app.put('/update-join/:joinId', (req, res)=>{
 })
        
 
-app.get('/get-join-data', (req, res) => {
+app.get('/get-join-data',  middlewareVerification, (req, res) => {
     res.json(joinDatabase);  
 })
 
 
-app.get('/get-join/:id', (req, res) => {
+app.get('/get-join/:id',  middlewareVerification, (req, res) => {
     const joinId = parseInt(req.params.id);
     console.log(joinId)
     console.log(joinDatabase);

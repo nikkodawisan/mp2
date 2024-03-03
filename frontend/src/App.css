@@ -1,6 +1,10 @@
+.header
+{
+    color: #FF407D;
+}
 p
 {
-    font-size: 14px;
+    font-size: 18px;
     color: 	#333333;
 }
 
@@ -25,9 +29,33 @@ p
     margin-bottom: 10px;
 }
 
+.miniCard
+{
+    transition: all 0.3s;
+}
+.miniCard:hover
+{
+    transform: scale(1.10);
+}
+
 .bg-c-light
 {
     background-color: #f2f2f2;
+}
+
+.navBut
+{
+    transition: all 0.3s;
+}
+
+.navBut:hover
+{
+    transform: scale(1.10);
+}
+
+.navbar-nav
+{
+    color: #FF407D;
 }
 
 .nav-link
@@ -68,6 +96,35 @@ background-color: aqua;
 color: black;
 font-weight: 700;
 padding-top: 4rem;
-padding-bottom: 4rem;
-border-radius: 2rem;
+padding-bottom: 2rem;
+border-radius: 0;
+padding-left: 1rem;
+padding-right: 1rem;
 }
+
+
+
+
+
+
+.price-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2em;
+  }
+  
+  .item-name {
+    margin-right: 0px;
+    text-align: left;
+  }
+  
+  .price-separator {
+    flex: 1;
+    border-bottom: 2px dotted #999;
+    margin: 0.6em 5px 0;
+  }
+  
+  .item-price {
+    text-align: right;
+  }

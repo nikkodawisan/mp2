@@ -1,9 +1,8 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect, } from 'react';
-import { useForm } from 'react-hook-form';
 import apiRequest from '../../dataFetch/apiRequest';
-import T1 from '../images/icon1.png';
+import T1 from '../images/icon3.png';
 
 
 const Join = () =>{
@@ -13,13 +12,10 @@ const [joinLastName, setJoinLastName] = useState('');
 const [joinEmail, setJoinEmail] = useState('');
 const [joinContact, setJoinContact] = useState('');
 const [joinAddress, setJoinAddress] = useState();
+const [joinInputFile, setJoinInputFile] = useState();
 
 const [joinDescription, setJoinDescription] = useState('');
 
-const {register, handleSubmit} = useForm();
-const onSubmit = (data) => {
-  console.log(data);
-}
 
 
 //SAVE
@@ -59,7 +55,7 @@ const save = async () =>{
     headers: {
       'Content-Type':'application/x-www-form-urlencoded',
       },
-      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&Register="+register+"&JoinDescription="+joinDescription,
+      body:"JoinFirstName="+joinFirstName+"&JoinLastName="+joinLastName+"&JoinEmail="+joinEmail+"&JoinContact="+joinContact+"&JoinAddress="+joinAddress+"&JoinInputFile="+joinInputFile+"&JoinDescription="+joinDescription,
       }
 
   const data = await apiRequest('http://localhost:5000/save-join', objReq);
@@ -105,8 +101,6 @@ return (
 <div className='card shadow'>
 <div className='card-body'>
 <div className='row'>  
-
-
 
 
 <h1>JOIN OUR TEAM</h1>
@@ -195,14 +189,14 @@ return (
   <Form.Control required type="phone" value={joinContact} onChange={ (e)=>{ setJoinContact(e.target.value) }} placeholder="Enter Mobile Number (09...)" />
 </Form.Group>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput65">
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
   <Form.Label>Address</Form.Label>
   <Form.Control required type="text" value={joinAddress} onChange={ (e)=>{ setJoinAddress(e.target.value) }} placeholder="Enter Your Address" />
 </Form.Group>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput6" onSubmit={handleSubmit(onSubmit)}>
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
   <Form.Label>Resume/CV</Form.Label>
-  <Form.Control required type="file" value={register} placeholder="Upload Your Resume/CV" />
+  <Form.Control required type="file" value={joinInputFile} onChange={ (e)=>{ setJoinInputFile(e.target.value) }} placeholder="Upload Your Resume/CV" />
 </Form.Group>
 
 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea7">

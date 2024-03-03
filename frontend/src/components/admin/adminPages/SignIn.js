@@ -1,6 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 import apiRequest from '../../../dataFetch/apiRequest';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 import React from 'react';
@@ -20,9 +25,9 @@ const SignIn = ()=> {
      const [errMsg, setErrMsg] = useState('');
      
      
-     useEffect(()=>{ 
-       console.log('Im monitoring login ')
-       //setTimeout(test, 1000);
+     useEffect(()=>
+     { 
+       console.log('Monitoring Login')
      }, []);
    
      const handleLoginFormSubmit = async (e)=>{
@@ -30,8 +35,9 @@ const SignIn = ()=> {
      
        const objReq = {
            method: 'POST',
-           headers: {
-               'Content-Type':'application/x-www-form-urlencoded',
+           headers: 
+           {
+            'Content-Type':'application/x-www-form-urlencoded',
            },
            body:"username="+usern+"&password="+passw,
        }
@@ -43,18 +49,19 @@ const SignIn = ()=> {
            localStorage.setItem('accessToken', JSON.stringify(data.accessToken));
            console.log("access token", data.accessToken);
            localStorage.setItem('loginUser', JSON.stringify(data.loginUser.username));
-           navigate('/home');
+           navigate('/admin');
         } else {
            setErrMsg(data.msg)
         }
      } 
    
-    const fontStyleColor = {
+    const fontStyleColor = 
+    {
        backgroundColor: 'white',
        color: 'red'
     } 
 
-    return (
+return (
 <div>
 <section className='py-4 bg-info'>
 
@@ -69,41 +76,51 @@ const SignIn = ()=> {
 </section>
 
 <section className='section py-4'>
-    <div className='container'>
-        <div className='card shadow'>
-            <div className='card-body'>
-                <div className='row'>
+<div className='container'>
+<div className='card shadow'>
+<div className='card-body'>
+<div className='row'>
 
-                        {/*Left Side*/}
+{/*Left Side*/}
 
-                        <h4 style={fontStyleColor}> {errMsg}  </h4>
+<div className="Login col-md-6">
+<Container>
+    <Row>
+    <Col>
+        <Form onSubmit={handleLoginFormSubmit}>
+      
+        <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Enter Username</Form.Label>
+            <Form.Control type="text" placeholder="" onChange={ (e)=>setUsername(e.target.value) }   />
+        </Form.Group>
+            
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Enter Password</Form.Label>
+            <Form.Control type="password" placeholder="" onChange={ (e)=>setPassword(e.target.value) }   />
+        </Form.Group>
 
-                        <div className='col-md-6' onSubmit={handleLoginFormSubmit}>
-                            <div className='form-group' controlid='controlInput1'>
-                                <label htmlFor="">Email</label>
-                                <input type="text" className="form-control" placeholder="Enter Full Name" onChange={ (e)=>setUsername(e.target.value) } />
-                            </div>
-
-                            <div className='form-group' controlid='controlInput2'>
-                                <label htmlFor="">Password</label>
-                                <input type="password" className="form-control" placeholder="Enter Phone Number" onChange={ (e)=>setPassword(e.target.value) } />
-                            </div>
-
-                            <div className='form-group py-3'>
-                                <button type="submit" className='btn btn-primary shadow w-100' variant='primary'>Sign In</button>
-                            </div>
-                        </div>
-
-                        {/*Right Side*/}
-                        <div className='col-md-6'>
-                        <img src={Icon1} className='w-50 h-60' alt="Icon1" />
-                        <img src={Icon2} className='w-50 h-60' alt="Icon2" />
-                        </div>
-
-                    </div>
-                </div>
+            <div className='form-group py-3'>
+            <Button className='btn btn-primary shadow w-100' variant="primary" type='submit'>Login</Button>
             </div>
-        </div>
+
+            {/*ERROR MESSAGE*/}
+            <h6 style={fontStyleColor}> {errMsg}  </h6>
+         </Form> 
+    </Col>
+    </Row>
+</Container>
+
+</div>
+    {/*Right Side*/}
+    <div className='col-md-6'>
+    <img src={Icon1} className='w-50 h-60' alt="Icon1" />
+    <img src={Icon2} className='w-50 h-60' alt="Icon2" />
+</div>
+
+</div>
+</div>
+</div>
+</div>
 </section>
 
 {/*Bottom Image*/}
@@ -112,7 +129,7 @@ const SignIn = ()=> {
 </div>
 
 </div>
-    );
+);
 }
 
 export default SignIn;

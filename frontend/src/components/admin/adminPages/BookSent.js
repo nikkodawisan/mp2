@@ -46,9 +46,6 @@ const Book = () => {
   setItemDescription('');
   }
 
-//CLOSING THE MODAL
-  const handleClose = () => setShow(false);
-
   //------------------------------------------------------------------------
   //------------------------------------------------------------------------
   //FORM REQUIREMENT
@@ -122,7 +119,24 @@ const Book = () => {
   }
 
   const handleReadData = async () => {
-    const response = await fetch('http://localhost:5000/get-book-data');
+
+    const token = localStorage.getItem('accessToken');
+    let newToken = token.replace(/"/g,'');
+
+    const response = await fetch('http://localhost:5000/get-book-data', {
+    method: 'GET',
+    headers: 
+    {
+      'Authorization': `Bearer ${newToken}`,
+    }
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(data=>{
+    console.log(data);
+    setAllBook(data);
+  });
     const data = await response.json();
     console.log('check all book', data);
     setAllBook(data);
@@ -207,7 +221,6 @@ const Book = () => {
                     
                     <td>  
                       <Button variant="danger" onClick={ ()=> deleteItem(item.id) }>Delete</Button> {'  '}
-                      <Button variant="success" onClick={ ()=> updateItem(item.id) }>Update</Button>
                       </td>
                   </tr>
                   ) 

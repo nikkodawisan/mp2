@@ -29,11 +29,7 @@ const Join = () => {
 //DATA'S ID
   const [joinId, setSetJoinId] = useState('');
   
-  
-
-
-//CLOSING THE MODAL
-  const handleClose = () => setShow(false);
+ 
 
   //------------------------------------------------------------------------
   //------------------------------------------------------------------------
@@ -108,7 +104,23 @@ const Join = () => {
   }
 
   const handleReadData = async () => {
-    const response = await fetch('http://localhost:5000/get-join-data');
+
+    const token = localStorage.getItem('accessToken');
+    let newToken = token.replace(/"/g,''); 
+
+    const response = await fetch('http://localhost:5000/get-join-data', {
+      method: 'GET',
+      headers: {
+                'Authorization': `Bearer ${newToken}`,
+               }
+
+    }).then(response => {
+      return response.json();
+    }).then(data=>{
+      console.log(data);
+      setAllBook(data);
+    });
+
     const data = await response.json();
     console.log('check all book', data);
     setAllBook(data);
@@ -190,7 +202,6 @@ const Join = () => {
                     
                     <td>  
                       <Button variant="danger" onClick={ ()=> deleteItem(item.id) }>Delete</Button> {'  '}
-                      <Button variant="success" onClick={ ()=> updateItem(item.id) }>Update</Button>
                       </td>
                   </tr>
                   ) 

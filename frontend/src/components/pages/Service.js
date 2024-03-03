@@ -20,13 +20,18 @@ function Service() {
         </div>
 </div>
 </section>
+
+<div className='container py-4'>
+<div className='card shadow'>
+<div className='card-body'>
+<div className='row'> 
             <div className='row align-items-start py-4'>
 
             {/*------------------------------------------------------------ */}
             {/*Hair*/}
 
                 <div className='col-md-3 text-center'>
-                    <div className='card shadow'>
+                    <div className='miniCard card shadow'>
                     <img src={T1} className='w-100 border-bottom' alt="Service1" />
                     <div className='card-body'>
                     <h6>Hair</h6>
@@ -99,7 +104,7 @@ function Service() {
             {/*Nails*/}
 
             <div className='col-md-3 text-center'>
-                <div className='card shadow'>
+                <div className='miniCard card shadow'>
                     <img src={T2} className='w-100 border-bottom' alt="Service1" />
                     <div className='card-body'>
                     <h6>Nails</h6>
@@ -173,7 +178,7 @@ function Service() {
             {/*Eyebrow*/}
 
             <div className='col-md-3 text-center'>
-                <div className='card shadow'>
+                <div className='miniCard card shadow'>
                 <img src={T3} className='w-100 border-bottom' alt="Service1" />
                 <div className='card-body'>
                 <h6>Eyebrow</h6>
@@ -278,7 +283,7 @@ function Service() {
             {/*Massage*/}
 
             <div className='col-md-3 text-center'>
-                <div className='card shadow'>
+                <div className='miniCard card shadow'>
                 <img src={T4} className='w-100 border-bottom' alt="Service1" />
                 <div className='card-body'>
                 <h6>Massage</h6>
@@ -360,6 +365,12 @@ function Service() {
             {/*------------------------------------------------------------ */}
     </div>
 </div>
+
+</div>
+</div>
+</div>
+</div>
+
     );
 }
 

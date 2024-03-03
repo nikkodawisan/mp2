@@ -5,7 +5,7 @@ function AdminNavbar() {
     return (
 <nav className="navbar py-4 shadow navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid mx-4">
-    <Link to="/admin" className="navbar-brand fw-bold">WELCOME ADMIN</Link>
+    <Link to="/admin" className="navbar-brand fw-bold">ADMINISTRATOR</Link>
 
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
