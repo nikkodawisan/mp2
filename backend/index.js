@@ -1,15 +1,13 @@
 //MVC - model, view, controller design pattern
 const express = require("express");
 const app = express();
-const cors = require("cors")
+const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
 app.use(express.urlencoded({ extended:true })) //for form submission
 app.use(express.json()) //json response
-app.use
-(
-    cors
-    (
+app.use(
+    cors(
         { origin : "http://localhost:3000" }  //front end
     )
 )
@@ -22,45 +20,44 @@ const userDB = [
         password: "Password123",
         status: 1,
         email: "admin@gmail.com"
+    },
+
+    {
+        id: 2,
+        username: "staff",
+        password: "123",
+        status: 0,
+        email: "staff@google.com"
     }
 
 ]
 
 
 //JWT
-
-const generateAccessToken = (user) =>
-{
-    let token = jwt.sign(
-        {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-        }, "ThisIsMySecretKey", {}
-    );
+const generateAccessToken = (user) => {
+    let token =  jwt.sign({ id: user.id, username: user.username, email: user.email }, "ThisMySecretKey", {});
     return token;
 }
 
-const middlewareVerification = (req, res, next) =>
-{
-const authHeader = req.headers.authorization;
-console.log(authHeader);
-if(authHeader) {
-    const token = authHeader.split(" ")[1];
-
-    jwt.verify(token, "ThisMySecretKey", (err, user)=>{
-        if(err){
-           return req.status(403).json("Invalid Token");
-        }
-        req.user = user;
-        next();
-    })
-}
-    else
-    {
-        return res.status(403).json("You Are Not Authenticated");
-    }
-}
+const middlewareVerification = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    console.log(authHeader);
+       if(authHeader) {
+           const token = authHeader.split(" ")[1];
+           console.log("token:"+token); 
+      
+           jwt.verify(token, "ThisMySecretKey", (err, user)=>{
+               if(err){
+                   return res.status(403).json("Invalid Token");
+               }
+               req.user = user;
+               next();
+               
+           })
+       } else {
+           return res.status(403).json("You Are Not Authenticated");
+       }
+   }
 
 app.post('/login-validation/', (req, res)=>{
     let username_login = req.body.username;
@@ -73,7 +70,7 @@ app.post('/login-validation/', (req, res)=>{
     );
     
     if (user) {
-        const token = generateAccessToken(user)
+        const token = generateAccessToken(user);
         const myReturn = { code: "success", 
         msg : "Username and Password matched a record", 
         loginUser : user,
@@ -91,18 +88,7 @@ app.post('/login-validation/', (req, res)=>{
 })
 
 
-const pageContent = [
-    {
-        id:'home',
-        content:'sample content for home page'
-    },
-    {
-        id:'about',
-        content:'sample content for about'
-    },
-]
-
-app.get('/page-content', middlewareVerification, (req, res)=>{
+app.get('/page-content', (req, res)=>{
    
    let pageId = req.body.pageContent; 
    let actualContent = req.body.contentValue;
@@ -135,7 +121,7 @@ app.get('/page-content', middlewareVerification, (req, res)=>{
 })
 
 
-app.get('/page-content/:id',  middlewareVerification, (req, res)=>{
+app.get('/page-content/:id', (req, res)=>{
     const pageId = req.params.id;
 
     const pageFound = pageContent.find( 
@@ -149,39 +135,6 @@ app.get('/page-content/:id',  middlewareVerification, (req, res)=>{
          res.status(400).json("Invalid Id")
      }
  })
-
-
-//HTTP METHODS
-//GET, POST, PUT, HEAD, DELETE, PATCH
-app.get('/test/:num1/:num2',  middlewareVerification, (req, res) => {
-    let num1 = req.params.num1;
-    let num2 = req.params.num2;
-    //database query
-
-    const twoNumbers = [
-        {
-           id : num1,
-           name: "Odeth",
-           signal: true, 
-        },
-        {
-            id : num2,
-            name: "Odeth",
-            signal: true,   
-        }
-    ]
-
-    let sample = [num1, num2]
-
-    let z = parseInt(num1);
-
-    let m = "Hello WD95P";
-
-    res.json(twoNumbers);
-    
-}
-);
-
 
 app.post('/save-data', (req, res) => {
     let fname = req.body.firstname;
@@ -316,12 +269,12 @@ app.put('/update-book/:bookId', (req, res)=>{
 })
        
 
-app.get('/get-book-data',  middlewareVerification, (req, res) => {
+app.get('/get-book-data', middlewareVerification, (req, res) => {
     res.json(bookDatabase);  
 })
 
 
-app.get('/get-book/:id',  middlewareVerification, (req, res) => {
+app.get('/get-book/:id',  (req, res) => {
     const bookId = parseInt(req.params.id);
     console.log(bookId)
     console.log(bookDatabase);
@@ -361,155 +314,6 @@ app.delete('/delete-book/:bookId', (req, res)=>{
 })
 
 //============================================================================================
-
-//===================================CONTACT DATABASE=========================================
-
-const contactDatabase = [
-    {
-        id:1,
-        itemName2: "John Deym",
-        itemContact2:'1234435677888',
-        itemEmail2:'sample@gmail.com',
-        itemDescription2: "Sample description",
-        },
-    {
-        id:2,
-        itemName2: "Shampoo Supernova",
-        itemContact2:'45353787465',
-        itemEmail2:'this@gmail.com', 
-
-        itemDescription2: "Sample description",
-        },
-
-    {
-         id:3,
-         itemName2: "Mickey Mouse",
-         itemContact2:'43546666454',
-         itemEmail2:'that@gmail.com',
-         itemDescription2: "Sample description",
-        },
-
-    {
-         id:4,
-         itemName2: "Keyboard Warrior",
-         itemContact2:'45564466',
-         itemEmail2:'samples222@gmail.com',
-         itemDescription2: "Sample description",
-        },
-
- ];
-
-//=============================================================================================
-
-//============================SAVE CONTACT=====================================================
-app.post('/save-contact', (req, res) => {
-
-    let itemName2 = req.body.ItemName2;
-    let itemContact2 = req.body.ItemContact2;
-    let itemEmail2 = req.body.ItemEmail2;
-    let itemDescription2 = req.body.ItemDescription2;
-
-    const newContact = {
-        id: contactDatabase.length + 1,
-        itemName2: itemName2,
-        itemContact2: itemContact2,
-        itemEmail2: itemEmail2,
-        itemDescription2: itemDescription2 
-    }
-
-   if ( contactDatabase.push(newContact) ) {
-        res.status(200).json( {code:'success', msg:'done saving'} )
-   } else {
-        res.status(400).json( {code:'failed', msg:'error encountered while saving'} )
-   }
-
-})
-
-//============================UPDATE CONTACT====================================================
-
-app.put('/update-contact/:contactId', (req, res)=>{
-    const contact_id = req.params.contactId;
-
-    let itemName2 = req.body.ItemName2;
-    let itemContact2 = req.body.ItemContact2;
-    let itemEmail2 = req.body.ItemEmail2;
-    let itemDescription2 = req.body.ItemDescription2;
-
-    const updateContactRecord = {
-        id: contact_id,
-        itemName2: itemName2,
-        itemContact2: itemContact2,
-        itemEmail2: itemEmail2,
-        itemDescription2: itemDescription2 
-    }
-
-   const indexOfContact =  contactDatabase.findIndex( (obj) => obj.id == contact_id );
-
-   contactDatabase[indexOfContact] = updateContactRecord;
-
-   if (contactDatabase) {
-        res.json(
-            {
-                code : "success",
-                msg : "Update Done"
-            }
-        )
-   } else {
-      res.status(400).json(
-        {
-            code : "failed",
-            msg : "Error encountered while updating"
-        }
-      )
-   }
-
-})
-       
-
-app.get('/get-contact-data',  middlewareVerification, (req, res) => {
-    res.json(contactDatabase);  
-})
-
-
-app.get('/get-contact/:id',  middlewareVerification, (req, res) => {
-    const contactId = parseInt(req.params.id);
-    console.log(contactId)
-    console.log(contactDatabase);
-    const itemFound2 = contactDatabase.find( (item) => {  return contactId === item.id } ) 
-
-     if (itemFound2){
-         res.status(200).json(itemFound2);
-     } else {
-         res.status(400).json("Invalid Id")
-     }
-
-})
-
-//============================DELETE CONTACT======================================================
-
-app.delete('/delete-contact/:contactId', (req, res)=>{
-    const contact_id = req.params.contactId;
-    const indexValue2 =  contactDatabase.findIndex( (obj) => obj.id == contact_id );
-    contactDatabase.splice(indexValue2, 1);
-
-    if (contactDatabase) {
-        res.json(
-            {
-                code : "success",
-                msg : "Delete Contact Done"
-            }
-        )
-   } else {
-      res.status(400).json(
-        {
-            code : "failed",
-            msg : "Error encountered while deleting contact"
-        }
-      )
-   }
-    
-})
-
 //===========================================JOIN DATABASE===================================================
 
 const joinDatabase = [
@@ -545,7 +349,6 @@ app.post('/save-join', (req, res) => {
     let joinAddress = req.body.JoinAddress;
     let joinFileInput = req.body.JoinFileInput;
     let joinDescription = req.body.JoinDescription;
-    let joinLimit = joinDatabase.length;
 
     const newJoin = {
         id: joinDatabase.length + 1,
@@ -557,11 +360,7 @@ app.post('/save-join', (req, res) => {
         joinFileInput: joinFileInput,
         joinDescription: joinDescription 
     }
-
-   if (joinLimit == 4) {
-        res.status(400).json( {code: 'failed', msg: 'Reservation Maximum Limit Reached'} )
-   }
-    
+  
    if ( joinDatabase.push(newJoin) ) {
         res.status(200).json( {code:'success', msg:'Success Saving'} )
    } else {
@@ -617,19 +416,19 @@ app.put('/update-join/:joinId', (req, res)=>{
 })
        
 
-app.get('/get-join-data',  middlewareVerification, (req, res) => {
+app.get('/get-join-data', middlewareVerification, (req, res) => {
     res.json(joinDatabase);  
 })
 
 
-app.get('/get-join/:id',  middlewareVerification, (req, res) => {
+app.get('/get-join/:id', (req, res) => {
     const joinId = parseInt(req.params.id);
     console.log(joinId)
     console.log(joinDatabase);
     const itemFound = joinDatabase.find( (item) => {  return joinId === item.id } ) 
 
-     if (joinFound){
-         res.status(200).json(joinFound);
+     if (itemFound){
+         res.status(200).json(itemFound);
      } else {
          res.status(400).json("Invalid Id")
      }

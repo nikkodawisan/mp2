@@ -106,7 +106,8 @@ const Join = () => {
   const handleReadData = async () => {
 
     const token = localStorage.getItem('accessToken');
-    let newToken = token.replace(/"/g,''); 
+    let newToken = token.replace(/"/g,'');
+    console.log("check Token:", newToken); 
 
     const response = await fetch('http://localhost:5000/get-join-data', {
       method: 'GET',
@@ -114,16 +115,13 @@ const Join = () => {
                 'Authorization': `Bearer ${newToken}`,
                }
 
-    }).then(response => {
+    }).then(response =>{
       return response.json();
     }).then(data=>{
       console.log(data);
       setAllBook(data);
     });
 
-    const data = await response.json();
-    console.log('check all book', data);
-    setAllBook(data);
   }
 
   useEffect(()=>{

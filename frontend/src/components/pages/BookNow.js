@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 import apiRequest from '../../dataFetch/apiRequest';
 
-
 const Book2 = () =>{
 //STATING THE VALUE (INPUT)//
 const [itemFirstName, setItemFirstName] = useState('');
@@ -194,12 +193,25 @@ if (earCandlingEntry === true)
         }
         handleReadData();
     }
-
+    const [allBook, setAllBook] = useState([]);
     const handleReadData = async () => {
-        const response = await fetch('http://localhost:5000/get-book-data');
-        const data = await response.json();
-        console.log('check all todo', data);
+
+      const token = localStorage.getItem('accessToken');
+      let newToken = token.replace(/"/g,'');
+  
+      const response = await fetch('http://localhost:5000/get-book-data', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${newToken}`,
       }
+    }).then(response =>{
+      return response.json();
+    }).then(data=>{
+      console.log(data);
+      setAllBook(data);
+    });
+  
+    }
     
       useEffect(()=>{
         handleReadData();

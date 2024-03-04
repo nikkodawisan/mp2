@@ -37,7 +37,7 @@ function Navbar() {
         </li>
       </ul>
 
-      <span class="navbar-text">
+      <span className="navbar-text">
       <Link to="/book" className="navBut nav-link active fw-bold">Book Now!</Link>
         </span>
     </div>

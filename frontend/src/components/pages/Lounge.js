@@ -31,7 +31,7 @@ function Lounge() {
 
                             <div className="accordion-item">
                             <h2 className="accordion-header">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hair1" aria-expanded="false" aria-controls="hair1">
+                            <button className="accordion-button collapsed fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#hair1" aria-expanded="false" aria-controls="hair1">
                             Hair
                             </button>
                             </h2>
@@ -70,7 +70,7 @@ function Lounge() {
 
                             <div className="accordion-item">
                             <h2 className="accordion-header">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hair2" aria-expanded="false" aria-controls="hair2">
+                            <button className="accordion-button collapsed fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#hair2" aria-expanded="false" aria-controls="hair2">
                             Nails
                             </button>
                             </h2>
@@ -78,7 +78,7 @@ function Lounge() {
                             <div className="accordion-body">
                             <ol>
                                     <li className='price-display'>
-                                        <span className='item-name'>Classi Manicure</span>
+                                        <span className='item-name'>Classic Manicure</span>
                                         <span className="price-separator"></span>
                                         <span className="item-price">P100.00</span>
                                         </li>
@@ -114,7 +114,7 @@ function Lounge() {
 
                             <div className="accordion-item">
                             <h2 className="accordion-header">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hair3" aria-expanded="false" aria-controls="hair3">
+                            <button className="accordion-button collapsed fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#hair3" aria-expanded="false" aria-controls="hair3">
                             Eyebrow
                             </button>
                             </h2>
@@ -176,7 +176,7 @@ function Lounge() {
 
                             <div className="accordion-item">
                             <h2 className="accordion-header">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hair4" aria-expanded="false" aria-controls="hair4">
+                            <button className="accordion-button collapsed fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#hair4" aria-expanded="false" aria-controls="hair4">
                             Massage
                             </button>
                             </h2>

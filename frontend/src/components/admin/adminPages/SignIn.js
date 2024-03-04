@@ -13,7 +13,7 @@ import Icon1 from '../../images/icon1.png';
 import Icon2 from '../../images/icon2.png';
 import Image1 from '../../images/sample7.jpg';
 
-const SignIn = ()=> {
+const Login = ()=> {
 
 
     const navigate = useNavigate(); 
@@ -43,6 +43,7 @@ const SignIn = ()=> {
        }
    
       const data = await apiRequest(backendlink, objReq);
+      console.log(data);
      
         if(data.code === "success"){
            let userLoginId = data.loginId; 
@@ -132,4 +133,4 @@ return (
 );
 }
 
-export default SignIn;
+export default Login;

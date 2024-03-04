@@ -34,7 +34,7 @@ function Service() {
                     <div className='miniCard card shadow'>
                     <img src={T1} className='w-100 border-bottom' alt="Service1" />
                     <div className='card-body'>
-                    <h6>Hair</h6>
+                    <h6 className='fs-4'>Hair</h6>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
                 
                 {/*Accordion 1*/}
@@ -107,7 +107,7 @@ function Service() {
                 <div className='miniCard card shadow'>
                     <img src={T2} className='w-100 border-bottom' alt="Service1" />
                     <div className='card-body'>
-                    <h6>Nails</h6>
+                    <h6 className='fs-4'>Nails</h6>
                     <p>More recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 
                             {/*Accordion 2*/}
@@ -181,7 +181,7 @@ function Service() {
                 <div className='miniCard card shadow'>
                 <img src={T3} className='w-100 border-bottom' alt="Service1" />
                 <div className='card-body'>
-                <h6>Eyebrow</h6>
+                <h6 className='fs-4'>Eyebrow</h6>
                 <p>Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                     
                             {/*Accordion 3*/}
@@ -286,7 +286,7 @@ function Service() {
                 <div className='miniCard card shadow'>
                 <img src={T4} className='w-100 border-bottom' alt="Service1" />
                 <div className='card-body'>
-                <h6>Massage</h6>
+                <h6 className='fs-4'>Massage</h6>
                 <p>More recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 
                             {/*Accordion 4*/}
@@ -361,8 +361,6 @@ function Service() {
 
                 </div>
             </div>
-              
-            {/*------------------------------------------------------------ */}
     </div>
 </div>
 

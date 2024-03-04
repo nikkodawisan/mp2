@@ -125,21 +125,16 @@ const Book = () => {
 
     const response = await fetch('http://localhost:5000/get-book-data', {
     method: 'GET',
-    headers: 
-    {
+    headers: {
       'Authorization': `Bearer ${newToken}`,
     }
-  })
-  .then(response => {
+  }).then(response =>{
     return response.json();
-  })
-  .then(data=>{
+  }).then(data=>{
     console.log(data);
     setAllBook(data);
   });
-    const data = await response.json();
-    console.log('check all book', data);
-    setAllBook(data);
+
   }
 
   useEffect(()=>{
@@ -170,7 +165,7 @@ const Book = () => {
     const response = await fetch('http://localhost:5000/get-book/'+id);
     const data = await response.json();
 
-    console.log('check one contact', data);
+   
     setItemFirstName(data.itemFirstName);
     setItemLastName(data.itemLastName);
     setItemEmail(data.itemEmail);
