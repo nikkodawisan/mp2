@@ -3,8 +3,6 @@ import AdminMain from './AdminMain';
 import AdminFooter from './AdminFooter';
 
 
-
-
 const AdminLayout = () => {
 
     return (

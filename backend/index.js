@@ -416,7 +416,7 @@ app.put('/update-join/:joinId', (req, res)=>{
 })
        
 
-app.get('/get-join-data', middlewareVerification, (req, res) => {
+app.get('/get-join-data', (req, res) => {
     res.json(joinDatabase);  
 })
 
